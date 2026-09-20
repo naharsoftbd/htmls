@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taraz Tea - সরাসরি চা বাগান থেকে মানসম্মত চা</title>
+    <!-- Bootstrap 5.3.8 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts for Bengali support -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1a5f2a;
+            --dark-green: #0d3b1a;
+            --light-green: #e8f5e9;
+            --accent-green: #2e7d32;
+            --gold: #c9a227;
+            --text-dark: #1a1a1a;
+            --text-muted: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #fafafa;
+        }
+
+        /* ========== Navbar ========== */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 0.75rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--primary-green) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-green) !important;
+        }
+
+        .navbar-icons .btn {
+            border: none;
+            background: transparent;
+            color: #333;
+            font-size: 1.25rem;
+            padding: 0.35rem 0.5rem;
+            position: relative;
+        }
+
+        .navbar-icons .btn:hover {
+            color: var(--primary-green);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--primary-green);
+            color: white;
+            font-size: 0.65rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ========== Hero Section ========== */
+        .hero-section {
+            position: relative;
+            min-height: 480px;
+            background: linear-gradient(135deg, rgba(13, 59, 26, 0.75) 0%, rgba(26, 95, 42, 0.6) 100%),
+                url('https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            margin-bottom: 1.75rem;
+            opacity: 0.95;
+        }
+
+        .btn-hero-primary {
+            background: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .btn-hero-primary:hover {
+            background: var(--dark-green);
+            border-color: var(--dark-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-hero-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .btn-hero-outline:hover {
+            background: white;
+            color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        /* ========== Category Section ========== */
+        .category-section {
+            padding: 3rem 0 2rem;
+            background: white;
+        }
+
+        .category-item {
+            text-align: center;
+            padding: 1.25rem 0.75rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: var(--light-green);
+        }
+
+        .category-item:hover {
+            background: var(--light-green);
+            transform: translateY(-4px);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            transition: all 0.3s;
+        }
+
+        .category-item:hover .category-icon {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .category-item h6 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0;
+            color: #333;
+        }
+
+        /* ========== Best Sellers ========== */
+        .section-title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--dark-green);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-green);
+            border-radius: 2px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+            height: 100%;
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            background: linear-gradient(145deg, #f5f5f5, #e8f5e9);
+            padding: 1.5rem;
+            text-align: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img-wrapper img {
+            max-height: 160px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary-green);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .product-body {
+            padding: 1.25rem;
+        }
+
+        .product-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+            color: #222;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-add-cart {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--dark-green);
+            color: white;
+        }
+
+        /* ========== Features ========== */
+        .features-section {
+            background: var(--light-green);
+            padding: 2.5rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-item h6 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ========== Affiliate Banner ========== */
+        .affiliate-banner {
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+            border-radius: 16px;
+            padding: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .affiliate-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .affiliate-banner h3 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-affiliate {
+            background: white;
+            color: var(--primary-green);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-affiliate:hover {
+            background: #f0f0f0;
+            color: var(--dark-green);
+            transform: translateY(-2px);
+        }
+
+        /* ========== Testimonials ========== */
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            height: 100%;
+            border: 1px solid #f0f0f0;
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ========== Footer ========== */
+        .footer {
+            background: var(--dark-green);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 3.5rem 0 1.5rem;
+        }
+
+        .footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-contact i {
+            color: var(--accent-green);
+            margin-right: 0.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 767.98px) {
+            .hero-content h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-section {
+                min-height: 400px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .category-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== Navbar ========== -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-cup-hot-fill"></i> Taraz Tea
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">হোম</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">পণ্য</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#categories">ক্যাটাগরি</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">আমাদের সম্পর্কে</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">যোগাযোগ</a></li>
+                </ul>
+                <div class="navbar-icons d-flex align-items-center gap-1">
+                    <button class="btn" title="Search"><i class="bi bi-search"></i></button>
+                    <button class="btn" title="Account"><i class="bi bi-person"></i></button>
+                    <button class="btn position-relative" title="Cart">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-badge">2</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== Hero Section ========== -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>সরাসরি চা বাগান থেকে<br>মানসম্মত চা</h1>
+                <p>প্রকৃতির সাথে, আনন্দের প্রতিশ্রুতি</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#products" class="btn btn-hero-primary">এখনই কিনুন</a>
+                    <a href="#about" class="btn btn-hero-outline">আরও জানুন</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Categories ========== -->
+    <section class="category-section" id="categories">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <div class="col-4 col-md-2">
+                    <div class="category-item">
+                        <div class="category-icon"><i class="bi bi-cup-straw"></i></div>
+                        <h6>Green Tea</h6>
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="category-item">
+                        <div class="category-icon"><i class="bi bi-cup-straw"></i></div>
+                        <h6>Green Tea</h6>
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="category-item">
+                        <div class="category-icon"><i class="bi bi-cup-hot"></i></div>
+                        <h6>Black Tea</h6>
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="category-item">
+                        <div class="category-icon"><i class="bi bi-flower1"></i></div>
+                        <h6>White Tea</h6>
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="category-item">
+                        <div class="category-icon"><i class="bi bi-leaf"></i></div>
+                        <h6>Herbal Tea</h6>
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="category-item">
+                        <div class="category-icon"><i class="bi bi-tree"></i></div>
+                        <h6>Organic Tea</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Best Sellers ========== -->
+    <section class="py-5" id="products">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">বেস্ট সেলার</h2>
+                <p class="text-muted mt-3">আমাদের সবচেয়ে জনপ্রিয় চা পণ্যসমূহ</p>
+            </div>
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-6 col-md-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="product-badge">Best</span>
+                            <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=300&h=300&fit=crop"
+                                alt="Green Tea 250g" class="img-fluid">
+                        </div>
+                        <div class="product-body">
+                            <h5 class="product-title">Green Tea 250g</h5>
+                            <div class="product-price">৳ 350</div>
+                            <button class="btn btn-add-cart"><i class="bi bi-cart-plus me-1"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-6 col-md-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?w=300&h=300&fit=crop"
+                                alt="Black Tea 250g" class="img-fluid">
+                        </div>
+                        <div class="product-body">
+                            <h5 class="product-title">Black Tea 250g</h5>
+                            <div class="product-price">৳ 320</div>
+                            <button class="btn btn-add-cart"><i class="bi bi-cart-plus me-1"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-6 col-md-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="product-badge">New</span>
+                            <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300&h=300&fit=crop"
+                                alt="White Tea 100g" class="img-fluid">
+                        </div>
+                        <div class="product-body">
+                            <h5 class="product-title">White Tea 100g</h5>
+                            <div class="product-price">৳ 550</div>
+                            <button class="btn btn-add-cart"><i class="bi bi-cart-plus me-1"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-6 col-md-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop"
+                                alt="Herbal Tea 150g" class="img-fluid">
+                        </div>
+                        <div class="product-body">
+                            <h5 class="product-title">Herbal Tea 150g</h5>
+                            <div class="product-price">৳ 420</div>
+                            <button class="btn btn-add-cart"><i class="bi bi-cart-plus me-1"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Features ========== -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-award"></i></div>
+                        <h6>Tea Taster Checked</h6>
+                        <p>বিশেষজ্ঞ দ্বারা পরীক্ষিত</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-box-seam"></i></div>
+                        <h6>Fresh Packing</h6>
+                        <p>তাজা ও সুরক্ষিত প্যাকিং</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-shop"></i></div>
+                        <h6>Wholesale Available</h6>
+                        <p>পাইকারি ক্রয়ের সুবিধা</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-truck"></i></div>
+                        <h6>Nationwide Delivery</h6>
+                        <p>সারাদেশে ডেলিভারি</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Affiliate Banner ========== -->
+    <section class="py-5">
+        <div class="container">
+            <div class="affiliate-banner">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3>Taraz Tea Affiliate Program</h3>
+                        <p class="mb-3 mb-lg-0 opacity-90">আমাদের অ্যাফিলিয়েট প্রোগ্রামে যোগ দিন এবং আয় করুন। বিশেষ
+                            কমিশন ও সুবিধা উপভোগ করুন।</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                        <a href="#" class="btn btn-affiliate">এখনই যোগ দিন <i class="bi bi-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Testimonials ========== -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">গ্রাহকদের মতামত</h2>
+                <p class="text-muted mt-3">আমাদের গ্রাহকরা কী বলছেন</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"খুবই ভালো মানের চা। স্বাদ ও ঘ্রাণ দুটোই অসাধারণ। নিয়মিত অর্ডার করি
+                            এখন।"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">স</div>
+                            <div>
+                                <p class="author-name">সাদ আহমেদ</p>
+                                <p class="author-role">ঢাকা</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"প্যাকেজিং খুব সুন্দর এবং চা-এর কোয়ালিটি একদম ফ্রেশ। ডেলিভারিও
+                            দ্রুত পেয়েছি।"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">ন</div>
+                            <div>
+                                <p class="author-name">নাজমা বেগম</p>
+                                <p class="author-role">চট্টগ্রাম</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="testimonial-text">"অর্গানিক চা খুঁজছিলাম, Taraz Tea তে পেয়ে গেলাম। স্বাস্থ্যকর এবং
+                            সুস্বাদু।"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">র</div>
+                            <div>
+                                <p class="author-name">রাকিব হাসান</p>
+                                <p class="author-role">সিলেট</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Footer ========== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-logo">
+                        <i class="bi bi-cup-hot-fill"></i> Taraz Tea
+                    </div>
+                    <p>সরাসরি চা বাগান থেকে মানসম্মত চা সরবরাহ করি। প্রকৃতির সাথে, আনন্দের প্রতিশ্রুতি।</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5>দ্রুত লিংক</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">হোম</a></li>
+                        <li><a href="#products">পণ্য</a></li>
+                        <li><a href="#categories">ক্যাটাগরি</a></li>
+                        <li><a href="#">ব্লগ</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h5>আমাদের সম্পর্কে</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">আমাদের গল্প</a></li>
+                        <li><a href="#">টিম</a></li>
+                        <li><a href="#">ক্যারিয়ার</a></li>
+                        <li><a href="#">প্রাইভেসি পলিসি</a></li>
+                        <li><a href="#">শর্তাবলী</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>যোগাযোগ</h5>
+                    <ul class="footer-links footer-contact">
+                        <li><i class="bi bi-geo-alt"></i> ঢাকা, বাংলাদেশ</li>
+                        <li><i class="bi bi-telephone"></i> +880 1712-345678</li>
+                        <li><i class="bi bi-envelope"></i> info@taraztea.com</li>
+                        <li><i class="bi bi-clock"></i> সকাল ৯টা - রাত ৯টা</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p class="mb-0">© 2025 Taraz Tea. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3.8 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
